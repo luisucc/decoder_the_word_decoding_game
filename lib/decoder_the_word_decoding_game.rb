@@ -5,8 +5,9 @@ require 'pry'
 require 'interact_server'
 require 'decoder'
 
-module DecoderTheWordDecodingGame
-  interactor = InteractServer.new
-end
+# class DecoderTheWordDecodingGame
+
+
+# end
 
 

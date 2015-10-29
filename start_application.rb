@@ -15,4 +15,46 @@ url_to_send_answer = resource_name+answer_path
 puts "You can solve the challenge employed this url = #{url_to_send_answer}<put_the_decoded_word_here>"
 puts "\n"
 
+# TODO: The challenge number 6 not working
+#
+# List to the solved challenges ,2,3,4,5,7
+challenges = [5]
 
+interactor = InteractServer.new
+
+decoded_method = Decoder.new
+
+challenges.each do |challenge|
+  word = interactor.call_to_the_url(url_to_get_word)
+  if decoded_method.finished?(word)
+    puts "YOU HAVE FINISHED!"
+    break
+  end
+
+  puts "The challenge #{challenge} is:"
+
+  case challenge
+  when 1
+    decoded_word = decoded_method.uncoded(word)
+  when 2
+    decoded_word = decoded_method.upside_down(word)
+  when 3
+    decoded_word = decoded_method.change_numbers_by_vowels(word)
+  when 4
+    # If the section of the end of the word is greater than three, please add
+    # the number to the input method
+    decoded_word = decoded_method.end_at_the_beginning(word)
+  when 5
+
+  when 6
+    # TODO: not working on server
+  when 7
+  else
+    puts "No challenge configured..."
+  end
+
+  puts "Get the message the server: #{word} => Response to the server: #{decoded_word}"
+  response = interactor.call_to_the_url(url_to_send_answer, decoded_word)
+  puts "#{response}"
+
+end

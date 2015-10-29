@@ -1,5 +1,9 @@
 class Decoder
 
+  def initialize
+
+  end
+
   ##
   ## @brief      { Receives an uncoded word and returns the same word. }
   ##
@@ -42,17 +46,18 @@ class Decoder
   ## @brief      { Receives a word with a section of n-letter of the end at the
   ##             beginning of the word and returns the same word decoded }
   ##
-  ## @param      word  { String }
+  ## @param      word     { String }
+  ## @param      nletter  { Integer }
   ##
   ## @return     { String }
   ##
-  def end_at_the_beginning(word, nletter)
+  def end_at_the_beginning(word, nletter = 3)
     word_to_chars = word.chars
     word_length   = word.length
 
     # Separate the word in two sections
     beginning_section = word_to_chars[word_length-nletter..word_length]
-    ending_section = word_to_char[0..word_length-(nletter+1)]
+    ending_section = word_to_chars[0..word_length-(nletter+1)]
 
     # Order the word
     decoded_word = beginning_section << ending_section
@@ -84,6 +89,11 @@ class Decoder
         break
       end
     end
+  end
+
+
+  def finished?(word)
+    "YOU HAVE FINISHED!" if word == "YOU HAVE FINISHED!"
   end
 
 end
