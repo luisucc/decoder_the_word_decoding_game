@@ -52,10 +52,7 @@ challenges.each do |challenge|
     posibilities = vowels.repeated_permutation(number_of_asterisks).to_a
 
     posibilities.each do |posibility|
-      i = 0
-      numbers = ("1".."#{number_of_asterisks}").to_a.map!{|x| x.to_i}.join
-      word_with_numbers = word.chars.map! {|letter|  letter == "*" ? i = 1 + i : letter }.join
-      decoded_word = word_with_numbers.tr("#{numbers}", "#{posibility.join}")
+      decoded_word = decoded_method.change_asterisks_by_vowels(word, posibility, number_of_asterisks)
       response = interactor.call_to_the_url(url_to_send_answer, decoded_word)
       if response == "OK! - You have succesfully completed this challenge, please ask for another word to see the next challenge"
         break
