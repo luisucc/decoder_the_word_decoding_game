@@ -1,7 +1,5 @@
 class Decoder
 
-  attr_accessor :alphabet
-
   ##
   ## @brief      { Receives an uncoded word and returns the same word. }
   ##
@@ -99,7 +97,7 @@ class Decoder
   ## @return     { String }
   ##
   def ignore_downcase_and_change_numbers_by_vowels(word)
-    ignore_downcase = word.gsub(/[#{self.alphabet}]/, '')
+    ignore_downcase = word.gsub(/[#{alphabet}]/, '')
     change_numbers_by_vowels(ignore_downcase).downcase
   end
 

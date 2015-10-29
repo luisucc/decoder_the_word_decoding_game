@@ -17,8 +17,8 @@ puts "\n"
 
 # TODO: The challenge number 6 not working
 #
-# List to the solved challenges ,2,3,4,5,7
-challenges = [7]
+# List to the solved challenges 1, 2, 3, 4, 5, 7
+challenges = [1, 2, 3, 4, 5, 7]
 
 interactor = InteractServer.new
 
