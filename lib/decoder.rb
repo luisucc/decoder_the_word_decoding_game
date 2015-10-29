@@ -1,8 +1,6 @@
 class Decoder
 
-  def initialize
-
-  end
+  attr_accessor :alphabet
 
   ##
   ## @brief      { Receives an uncoded word and returns the same word. }
@@ -92,8 +90,25 @@ class Decoder
   end
 
 
+  ##
+  ## @brief      Ignore the downcase letther and change numbers by vowels;
+  ##             returns the same word decoded.
+  ##
+  ## @param      word  { String }
+  ##
+  ## @return     { String }
+  ##
+  def ignore_downcase_and_change_numbers_by_vowels(word)
+    ignore_downcase = word.gsub(/[#{self.alphabet}]/, '')
+    change_numbers_by_vowels(ignore_downcase).downcase
+  end
+
   def finished?(word)
     "YOU HAVE FINISHED!" if word == "YOU HAVE FINISHED!"
+  end
+
+  def alphabet
+    ('a'..'z').to_a
   end
 
 end

@@ -18,7 +18,7 @@ puts "\n"
 # TODO: The challenge number 6 not working
 #
 # List to the solved challenges ,2,3,4,5,7
-challenges = [5]
+challenges = [7]
 
 interactor = InteractServer.new
 
@@ -45,10 +45,26 @@ challenges.each do |challenge|
     # the number to the input method
     decoded_word = decoded_method.end_at_the_beginning(word)
   when 5
+    # TODO: refactor this.
+    number_of_asterisks = word.count('*')
+    vowels = 'aeiou'.chars
 
+    posibilities = vowels.repeated_permutation(number_of_asterisks).to_a
+
+    posibilities.each do |posibility|
+      i = 0
+      numbers = ("1".."#{number_of_asterisks}").to_a.map!{|x| x.to_i}.join
+      word_with_numbers = word.chars.map! {|letter|  letter == "*" ? i = 1 + i : letter }.join
+      decoded_word = word_with_numbers.tr("#{numbers}", "#{posibility.join}")
+      response = interactor.call_to_the_url(url_to_send_answer, decoded_word)
+      if response == "OK! - You have succesfully completed this challenge, please ask for another word to see the next challenge"
+        break
+      end
+    end
   when 6
     # TODO: not working on server
   when 7
+    decoded_word = decoded_method.ignore_downcase_and_change_numbers_by_vowels(word)
   else
     puts "No challenge configured..."
   end
