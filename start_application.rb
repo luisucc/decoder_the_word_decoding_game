@@ -15,7 +15,7 @@ url_to_send_answer = resource_name+answer_path
 puts "You can solve the challenge employed this url = #{url_to_send_answer}<put_the_decoded_word_here>"
 puts "\n"
 
-# TODO: The challenge number 6 not working
+# TODO: Challenge number 6 not working
 #
 # List to the solved challenges 1, 2, 3, 4, 5, 7
 challenges = [1, 2, 3, 4, 5, 7]
@@ -49,9 +49,7 @@ challenges.each do |challenge|
     number_of_asterisks = word.count('*')
     vowels = 'aeiou'.chars
 
-    posibilities = vowels.repeated_permutation(number_of_asterisks).to_a
-
-    posibilities.each do |posibility|
+    vowels.repeated_permutation(number_of_asterisks).to_a.each do |posibility|
       decoded_word = decoded_method.change_asterisks_by_vowels(word, posibility, number_of_asterisks)
       response = interactor.call_to_the_url(url_to_send_answer, decoded_word)
       if response == "OK! - You have succesfully completed this challenge, please ask for another word to see the next challenge"
